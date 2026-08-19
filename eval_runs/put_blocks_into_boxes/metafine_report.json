@@ -1,0 +1,54 @@
+{
+  "task_id": "put_blocks_into_boxes",
+  "metrics": {
+    "perception": {
+      "ausc_camera": 0.15,
+      "ausc_light": 0.23333333333333334,
+      "ausc_mean": 0.19166666666666665,
+      "clean_success_rate": 0.25,
+      "curves": {
+        "camera": {
+          "clean": 0.25,
+          "cam_l1": 0.25,
+          "cam_l2": 0.05,
+          "cam_l3": 0.05
+        },
+        "light": {
+          "clean": 0.25,
+          "light_l1": 0.35,
+          "light_l2": 0.15,
+          "light_l3": 0.15
+        }
+      }
+    },
+    "understanding": {
+      "success_rate": 0.35,
+      "per_variant_success_rate": {
+        "red": 0.35,
+        "blue": 0.35,
+        "green": 0.35
+      },
+      "confusion": {
+        "red": {
+          "none": 8,
+          "blue": 2,
+          "red": 10
+        },
+        "blue": {
+          "none": 4,
+          "blue": 16
+        },
+        "green": {
+          "green": 10,
+          "none": 6,
+          "red": 4
+        }
+      }
+    },
+    "behavior": {
+      "success_rate": 0.35,
+      "mean_stage_fraction": 0.45,
+      "note": "multi-stage: Behavior reports final SR + mean(stage_id/3)"
+    }
+  }
+}

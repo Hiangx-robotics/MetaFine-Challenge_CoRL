@@ -1,0 +1,41 @@
+# Eval config for put_blocks_into_boxes (T4). Sensor settings mirror the
+# training replay metadata in demos/CoRL/put_blocks_into_boxes/{red,blue,green}/*.rgb.*.json.
+task_id: put_blocks_into_boxes
+env_id: put_blocks_into_boxes
+max_episode_steps: 800
+
+sensor:
+  shader_pack: default
+  width: 512
+  height: 512
+  base_camera_fov: 1.0   # ~57 deg
+
+control_mode: pd_joint_delta_pos
+obs_mode: rgb
+sim_backend: physx_cpu
+
+variants:
+  red: "Place the red cube in the left-hand box and the remaining cubes in the right-hand box."
+  blue: "Place the blue cube in the left-hand box and the remaining cubes in the right-hand box."
+  green: "Place the green cube in the left-hand box and the remaining cubes in the right-hand box."
+
+train_demo_jsons:
+  - demos/CoRL/put_blocks_into_boxes/red/put_blocks_red.rgb.pd_joint_delta_pos.physx_cpu.json
+  - demos/CoRL/put_blocks_into_boxes/blue/put_blocks_blue.rgb.pd_joint_delta_pos.physx_cpu.json
+  - demos/CoRL/put_blocks_into_boxes/green/put_blocks_green.rgb.pd_joint_delta_pos.physx_cpu.json
+
+seed_select:
+  n_seeds: 20
+  seed_range: [0, 1000000]
+  skill_type: put_blocks_into_boxes
+  # Scene geometry is seed-dependent but special_cube is a constructor kwarg.
+  # Require the seed to plan successfully for EVERY color (strict Understanding).
+  check_variants: [red, blue, green]
+  require_all_variants: true
+
+perception:
+  camera_pos_levels: [0.03, 0.06, 0.12]
+  camera_rot_levels_deg: [2.0, 6.0, 12.0]
+  light_ambient_delta_levels: [0.10, 0.25, 0.40]
+  n_episodes: 20
+  default_variant: green

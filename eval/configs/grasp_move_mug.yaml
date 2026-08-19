@@ -1,0 +1,49 @@
+# Eval config for grasp_move_mug (T2). Sensor settings mirror the
+# training replay metadata in demos/CoRL/grasp_move_mug/{left,right,forward}/*.rgb.*.json.
+# Task graphs supply MultiSkillEnv skill_chain + success/stages.
+task_id: grasp_move_mug
+env_id: multi_skill
+object_name: "8848"
+part_name: handle
+max_episode_steps: 400
+
+sensor:
+  shader_pack: default
+  width: 512
+  height: 512
+  base_camera_fov: 1.2217304763960306   # ~70 deg
+
+control_mode: pd_joint_delta_pos
+obs_mode: rgb
+sim_backend: physx_cpu
+
+# Instruction variants used for Understanding (must match training text).
+# Image-frame wording; world-frame skill axes are in the YAML task graphs.
+variants:
+  left: "Grasp the mug by the handle and move it to the left"
+  right: "Grasp the mug by the handle and move it to the right"
+  forward: "Grasp the mug by the handle and move it forward"
+
+task_graphs:
+  left: configs/t2_mug_move_left.yaml
+  right: configs/t2_mug_move_right.yaml
+  forward: configs/t2_mug_move_forward.yaml
+
+train_demo_jsons:
+  - demos/CoRL/grasp_move_mug/left/grasp_move_mug_left.rgb.pd_joint_delta_pos.physx_cpu.json
+  - demos/CoRL/grasp_move_mug/right/grasp_move_mug_right.rgb.pd_joint_delta_pos.physx_cpu.json
+  - demos/CoRL/grasp_move_mug/forward/grasp_move_mug_forward.rgb.pd_joint_delta_pos.physx_cpu.json
+
+seed_select:
+  n_seeds: 20
+  seed_range: [0, 1000000]
+  skill_type: multi_skill
+  check_variants: [left, right, forward]
+  require_all_variants: true
+
+perception:
+  camera_pos_levels: [0.03, 0.06, 0.12]
+  camera_rot_levels_deg: [2.0, 6.0, 12.0]
+  light_ambient_delta_levels: [0.10, 0.25, 0.40]
+  n_episodes: 20
+  default_variant: left

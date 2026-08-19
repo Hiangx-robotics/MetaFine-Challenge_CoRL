@@ -1,0 +1,42 @@
+# Eval config for insert_letter (T5). Sensor settings mirror the
+# training replay metadata in demos/CoRL/insert_letter/{C,o,R,L}/*.rgb.*.json.
+task_id: insert_letter
+env_id: insert_letter
+max_episode_steps: 400
+
+sensor:
+  shader_pack: default
+  width: 512
+  height: 512
+  base_camera_fov: 1.2217304763960306   # ~70 deg
+
+control_mode: pd_joint_delta_pos
+obs_mode: rgb
+sim_backend: physx_cpu
+
+variant_env_kwarg: target_letter
+variants:
+  C: "Insert the letter C into its slot on the board"
+  o: "Insert the letter o into its slot on the board"
+  R: "Insert the letter R into its slot on the board"
+  L: "Insert the letter L into its slot on the board"
+
+train_demo_jsons:
+  - demos/CoRL/insert_letter/C/insert_letter_C.rgb.pd_joint_delta_pos.physx_cpu.json
+  - demos/CoRL/insert_letter/o/insert_letter_o.rgb.pd_joint_delta_pos.physx_cpu.json
+  - demos/CoRL/insert_letter/R/insert_letter_R.rgb.pd_joint_delta_pos.physx_cpu.json
+  - demos/CoRL/insert_letter/L/insert_letter_L.rgb.pd_joint_delta_pos.physx_cpu.json
+
+seed_select:
+  n_seeds: 20
+  seed_range: [0, 1000000]
+  skill_type: insert_letter
+  check_variants: [C, o, R, L]
+  require_all_variants: true
+
+perception:
+  camera_pos_levels: [0.03, 0.06, 0.12]
+  camera_rot_levels_deg: [2.0, 6.0, 12.0]
+  light_ambient_delta_levels: [0.10, 0.25, 0.40]
+  n_episodes: 20
+  default_variant: C

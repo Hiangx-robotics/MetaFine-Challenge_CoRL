@@ -1,0 +1,51 @@
+{
+  "task_id": "toggle_switch_table",
+  "metrics": {
+    "perception": {
+      "ausc_camera": 0.2916666666666667,
+      "ausc_light": 0.4,
+      "ausc_mean": 0.3458333333333333,
+      "clean_success_rate": 0.4,
+      "curves": {
+        "camera": {
+          "clean": 0.4,
+          "cam_l1": 0.55,
+          "cam_l2": 0.1,
+          "cam_l3": 0.05
+        },
+        "light": {
+          "clean": 0.4,
+          "light_l1": 0.4,
+          "light_l2": 0.5,
+          "light_l3": 0.2
+        }
+      }
+    },
+    "understanding": {
+      "success_rate": 0.6,
+      "per_variant_success_rate": {
+        "red": 0.55,
+        "blue": 0.65
+      },
+      "confusion": {
+        "red": {
+          "blue": 5,
+          "both": 7,
+          "none": 4,
+          "red": 4
+        },
+        "blue": {
+          "blue": 7,
+          "both": 7,
+          "red": 4,
+          "none": 2
+        }
+      }
+    },
+    "behavior": {
+      "success_rate": 0.6,
+      "mean_stage_fraction": null,
+      "note": "single-stage task: Behavior = final success rate"
+    }
+  }
+}

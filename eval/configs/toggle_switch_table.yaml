@@ -1,0 +1,48 @@
+# Eval config for toggle_switch_table (T3). Sensor settings mirror
+# the training replay metadata in demos/CoRL/toggle_switch_table/{red,blue}/*.rgb.*.json
+# — do NOT rely on env defaults (224x224).
+task_id: toggle_switch_table
+env_id: toggle_switch_table
+object_name: "100920"
+part_name: button
+max_episode_steps: 300
+
+# Must match training replay sensor_configs.
+sensor:
+  shader_pack: default
+  width: 512
+  height: 512
+  base_camera_fov: 1.2217304763960306   # ~70 deg
+
+control_mode: pd_joint_delta_pos
+obs_mode: rgb
+sim_backend: physx_cpu
+
+# Instruction variants used for Understanding (must match training text).
+# Variant selects env kwarg ``target_switch`` (not part_name).
+variant_env_kwarg: target_switch
+variants:
+  red: "Toggle the red switch on the table"
+  blue: "Toggle the blue switch on the table"
+
+# Demo JSONs whose episode_seed values are excluded from the eval seed pool.
+train_demo_jsons:
+  - demos/CoRL/toggle_switch_table/red/toggle_switch_table_red.rgb.pd_joint_delta_pos.physx_cpu.json
+  - demos/CoRL/toggle_switch_table/blue/toggle_switch_table_blue.rgb.pd_joint_delta_pos.physx_cpu.json
+
+# Seed-selection defaults (RoboTwin-style: planner-solvable, disjoint from train).
+seed_select:
+  n_seeds: 20
+  seed_range: [0, 1000000]
+  skill_type: toggle_switch
+  check_variants: [red, blue]
+  require_all_variants: true
+
+# Perception DR levels (camera pos+rot joint; light separate).
+perception:
+  camera_pos_levels: [0.03, 0.06, 0.12]
+  camera_rot_levels_deg: [2.0, 6.0, 12.0]
+  light_ambient_delta_levels: [0.10, 0.25, 0.40]
+  n_episodes: 20
+  # Which instruction/variant to use for the Perception sweep.
+  default_variant: red

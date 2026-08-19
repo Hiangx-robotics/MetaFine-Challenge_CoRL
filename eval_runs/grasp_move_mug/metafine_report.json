@@ -1,0 +1,53 @@
+{
+  "task_id": "grasp_move_mug",
+  "metrics": {
+    "perception": {
+      "ausc_camera": 0.825,
+      "ausc_light": 0.9583333333333333,
+      "ausc_mean": 0.8916666666666666,
+      "clean_success_rate": 1.0,
+      "curves": {
+        "camera": {
+          "clean": 1.0,
+          "cam_l1": 1.0,
+          "cam_l2": 0.55,
+          "cam_l3": 0.85
+        },
+        "light": {
+          "clean": 1.0,
+          "light_l1": 1.0,
+          "light_l2": 0.9,
+          "light_l3": 0.95
+        }
+      }
+    },
+    "understanding": {
+      "success_rate": 0.95,
+      "per_variant_success_rate": {
+        "left": 0.95,
+        "right": 0.95,
+        "forward": 0.95
+      },
+      "confusion": {
+        "left": {
+          "left": 19,
+          "none": 1
+        },
+        "right": {
+          "right": 19,
+          "none": 1
+        },
+        "forward": {
+          "left": 3,
+          "forward": 16,
+          "right": 1
+        }
+      }
+    },
+    "behavior": {
+      "success_rate": 0.95,
+      "mean_stage_fraction": 0.95,
+      "note": "two-stage: Behavior reports final SR + mean(stage_id/2)"
+    }
+  }
+}

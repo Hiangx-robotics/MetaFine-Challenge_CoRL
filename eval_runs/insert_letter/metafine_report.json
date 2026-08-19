@@ -1,0 +1,56 @@
+{
+  "task_id": "insert_letter",
+  "metrics": {
+    "perception": {
+      "ausc_camera": 0.03333333333333333,
+      "ausc_light": 0.016666666666666666,
+      "ausc_mean": 0.025,
+      "clean_success_rate": 0.1,
+      "curves": {
+        "camera": {
+          "clean": 0.1,
+          "cam_l1": 0.05,
+          "cam_l2": 0.0,
+          "cam_l3": 0.0
+        },
+        "light": {
+          "clean": 0.1,
+          "light_l1": 0.0,
+          "light_l2": 0.0,
+          "light_l3": 0.0
+        }
+      }
+    },
+    "understanding": {
+      "success_rate": 0.05,
+      "per_variant_success_rate": {
+        "C": 0.05,
+        "o": 0.05,
+        "R": 0.1,
+        "L": 0.0
+      },
+      "confusion": {
+        "C": {
+          "none": 19,
+          "C": 1
+        },
+        "o": {
+          "none": 19,
+          "o": 1
+        },
+        "R": {
+          "none": 18,
+          "R": 2
+        },
+        "L": {
+          "none": 20
+        }
+      }
+    },
+    "behavior": {
+      "success_rate": 0.05,
+      "mean_stage_fraction": null,
+      "note": "single-stage insert: Behavior ≡ final success"
+    }
+  }
+}

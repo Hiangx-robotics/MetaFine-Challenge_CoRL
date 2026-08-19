@@ -1,0 +1,33 @@
+# T2 — grasp the mug handle (8848), then translate 10 cm.
+#
+# move_to_direction names axes in the WORLD frame. The sensor camera sits at
+# +X looking back at the robot, so world -Y appears on the LEFT of the image.
+# Instruction text is attached later, at LeRobot conversion time.
+#
+# flip_z / lift_z are per-step switches on grasp_part (not global conventions).
+# lift_z=0.20 m clears the table without returning to the high home pose.
+env: multi_skill
+object: "8848"
+part: handle
+steps:
+  - skill: grasp_part
+    part_name: handle
+    flip_z: true
+    lift_z: 0.20
+  - skill: move_to_direction
+    direction: backward   # world -Y == image left
+    step: 0.10
+success:
+  and:
+    - {grasped: handle}
+    - {moved_along: [0.07, tcp]}
+    - {moved_along: [0.05, object]}
+stages:
+  - name: grasped
+    success: {grasped: handle}
+  - name: moved
+    success:
+      and:
+        - {grasped: handle}
+        - {moved_along: [0.07, tcp]}
+        - {moved_along: [0.05, object]}

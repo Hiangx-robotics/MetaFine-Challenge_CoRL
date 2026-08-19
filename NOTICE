@@ -1,0 +1,37 @@
+MetaFine Competition Release
+Copyright (c) 2026 MetaFine Contributors
+
+This project is released under the MIT License (see LICENSE).
+
+The following third-party components are referenced or partially included:
+
+## Hugging Face LeRobot
+
+- Used at runtime via `pip install lerobot` for π0 training and evaluation.
+- License: Apache License 2.0
+- Source: https://github.com/huggingface/lerobot
+
+## Physical Intelligence π0 / π0.5
+
+- Baseline policies referenced in documentation and evaluation scripts.
+- Consult Physical Intelligence and LeRobot repositories for model weights and terms.
+
+## SAPIEN / ManiSkill
+
+- Simulation backbone (`sapien`, `mani_skill` Python packages).
+- See upstream licenses for redistribution terms.
+
+## PartNet-Mobility assets
+
+- Competition tasks T1–T3 use annotated subsets (assets `3558`, `8848`, `100920`).
+- Additional assets are distributed via the MetaFine dataset mirrors (ModelScope / Hugging Face).
+
+## Optional policy backends (not vendored in this release)
+
+The full MetaFine platform supports additional VLA stacks installed separately:
+
+- OpenVLA / OpenVLA-OFT (MIT)
+- StarVLA (MIT — see upstream LICENSE for attribution requirements)
+- ACT, Diffusion Policy 3D
+
+Install instructions for these backends are maintained in their respective upstream repositories.

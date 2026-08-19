@@ -1,0 +1,26 @@
+# T2 — grasp the mug handle, then translate 10 cm. See t2_mug_move_left.yaml.
+env: multi_skill
+object: "8848"
+part: handle
+steps:
+  - skill: grasp_part
+    part_name: handle
+    flip_z: true
+    lift_z: 0.20
+  - skill: move_to_direction
+    direction: forward    # world +Y == image right
+    step: 0.10
+success:
+  and:
+    - {grasped: handle}
+    - {moved_along: [0.07, tcp]}
+    - {moved_along: [0.05, object]}
+stages:
+  - name: grasped
+    success: {grasped: handle}
+  - name: moved
+    success:
+      and:
+        - {grasped: handle}
+        - {moved_along: [0.07, tcp]}
+        - {moved_along: [0.05, object]}

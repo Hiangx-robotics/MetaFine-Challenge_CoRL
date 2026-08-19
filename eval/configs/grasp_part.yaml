@@ -1,0 +1,47 @@
+# Eval config for grasp_part (T1). Sensor settings mirror the training
+# replay metadata in demos/CoRL/grasp_part/{cap,body}/*.rgb.*.json — do NOT
+# rely on env defaults (224x224); those diverge from the collected data.
+task_id: grasp_part
+env_id: grasp_part
+object_name: "3558"
+max_episode_steps: 300
+
+# Must match training replay sensor_configs.
+sensor:
+  shader_pack: default
+  width: 512
+  height: 512
+  base_camera_fov: 1.2217304763960306   # ~70 deg
+
+control_mode: pd_joint_delta_pos
+obs_mode: rgb
+sim_backend: physx_cpu
+
+# Instruction variants used for Understanding (must match training text).
+variants:
+  cap: "Grasp the cap of the bottle"
+  body: "Grasp the body of the bottle"
+
+# Demo JSONs whose episode_seed values are excluded from the eval seed pool.
+train_demo_jsons:
+  - demos/CoRL/grasp_part/cap/grasp_part_cap.rgb.pd_joint_delta_pos.physx_cpu.json
+  - demos/CoRL/grasp_part/body/grasp_part_body.rgb.pd_joint_delta_pos.physx_cpu.json
+
+# Seed-selection defaults (RoboTwin-style: planner-solvable, disjoint from train).
+seed_select:
+  n_seeds: 20
+  seed_range: [0, 1000000]
+  skill_type: grasp_part
+  # For grasp_part, a seed is solvable if EITHER cap OR body plans succeed
+  # (scene geometry is shared; part_name only picks the grasp annotation).
+  check_variants: [cap, body]
+  require_all_variants: true
+
+# Perception DR levels (camera pos+rot joint; light separate).
+perception:
+  camera_pos_levels: [0.03, 0.06, 0.12]
+  camera_rot_levels_deg: [2.0, 6.0, 12.0]
+  light_ambient_delta_levels: [0.10, 0.25, 0.40]
+  n_episodes: 20
+  # Which instruction/variant to use for the Perception sweep.
+  default_variant: cap

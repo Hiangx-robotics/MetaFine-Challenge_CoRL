@@ -1,0 +1,51 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/
+
+# Secrets
+.env
+.env.*
+
+# Local data / scratch (download demos & checkpoints outside git)
+demos/CoRL/*/lerobot/
+demos/CoRL/*/*.h5
+demos/CoRL/*/*.json
+demos/CoRL/*/raw/
+outputs/
+logs/
+eval_runs/*/videos/
+eval_runs/*/*_summary.json
+eval_runs/*/run_summary.json
+eval/seeds/*.json
+
+*.log
+*.status
+*.nohup
+*.h5
+*.mp4
+
+# WandB / TensorBoard
+wandb/
+runs/
+
+# Policy training artifacts
+core/policies/*/runs/
+core/policies/*/eval_videos/
+
+# Model weights
+*.pth
+*.safetensors
+*.bin
+*.bag
+*.ckpt
+*.onnx
+*.pt
