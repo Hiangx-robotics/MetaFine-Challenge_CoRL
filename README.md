@@ -88,7 +88,7 @@ Every submission is scored on three axes (same protocol for all teams):
 | T1 `grasp_part` | 0.296 | 0.35 | 0.35 |
 | T2 `grasp_move_mug` | 0.892 | 0.95 | 0.95 |
 | T3 `toggle_switch_table` | 0.346 | 0.60 | 0.60 |
-| T4 `put_blocks_into_boxes` | 0.192 | 0.35 | 0.35 |
+| T4 `put_blocks_into_boxes` | 0.192 | 0.35 | 0.45 |
 | T5 `insert_letter` | 0.025 | 0.05 | 0.05 |
 
 Baseline reports ship under `eval_runs/*/metafine_report.json`.
