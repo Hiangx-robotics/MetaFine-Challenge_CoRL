@@ -38,7 +38,7 @@ MetaFine decomposes competence into three orthogonal dimensions — **understand
 
 Five language-conditioned tabletop tasks. Scenes are fixed at evaluation time; only the instruction (and, for Perception, camera/light) changes. Sensors match the training demos: dual RGB (`base` + `hand`), 512×512, `pd_joint_delta_pos`.
 
-<p align="center">
+<!-- <p align="center">
   <b>T1</b>&nbsp;<code>grasp_part</code><br/>
   <video src="docs/tasks/t1_grasp_part.mp4" controls width="480"></video>
 </p>
@@ -57,7 +57,7 @@ Five language-conditioned tabletop tasks. Scenes are fixed at evaluation time; o
 <p align="center">
   <b>T5</b>&nbsp;<code>insert_letter</code><br/>
   <video src="docs/tasks/t5_insert_letter.mp4" controls width="480"></video>
-</p>
+</p> -->
 
 ### Tasks
 
